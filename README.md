@@ -2,11 +2,11 @@
 
 ## Context
 
-I built this small pilot while reading through the proposed PhD project on competition law enforcement in mixed markets.
+I built this small pilot while reading through the proposed PhD project on competition law enforcement in mixed markets. The aim was to understand how the data part of the project could work in practice and, at the same time, practice my R skills.
 
-I wanted to understand how the data side of the project could work in practice and, at the same time, improve my R skills.
+The idea was to identify which mergers involved State-owned companies, link that ownership information to the Commission’s merger decisions, and then examine whether those cases appeared to receive different levels of scrutiny, for example through Phase II review, remedies or longer review periods.
 
-The idea was to see how information from EU merger decisions could be linked with ownership information about the companies involved, and then used to look at outcomes such as Phase II review, remedies or review duration.
+This pilot was not intended to answer the PhD question itself, and the figures used are suggestive of anything about how the Commission actually treats State-owned companies.
 
 ## Data and workflow
 
@@ -40,15 +40,9 @@ The real pilot is too small and has too much missing ownership information to dr
 
 Instead of forcing the real data into a regression, I created a separate synthetic dataset of 200 hypothetical merger cases and used it only to practise the regression workflow in R.
 
-I first ran a simple logistic regression looking at the relationship between State ownership and Phase II review. I then added transaction size and sector to see how the result changed when other factors were taken into account.
+I first ran a simple regression looking at the relationship between State ownership and Phase II review. I then added transaction size and sector to see how the result changed when other factors were taken into account.
 
-The results from the synthetic dataset are not findings about European Commission enforcement. This part of the pilot was only meant to help me understand how the proposed analysis could be implemented in practice.
-
-## What I learned
-
-The most useful part of the pilot was not the regression itself.
-
-It was seeing how much depends on the work done before the model is even run: identifying the right company, matching ownership information to the right year, deciding what counts as State ownership, keeping ownership and control separate, and dealing properly with missing information.
+This part of the pilot was only meant to help me understand how the proposed analysis could be implemented in practice.
 
 ## Files
 
