@@ -1,65 +1,59 @@
-# Mixed Markets Pilot: EU Merger Review and State Ownership
+# EU Merger Review and State Ownership: Methodological Pilot
 
-## Purpose
+## Why I built this
 
-This is a small methodological pilot inspired by the proposed PhD project on competition law enforcement in mixed markets.
+I built this small pilot while reading through the proposed PhD project on competition law enforcement in mixed markets.
 
-The aim was to understand, in practice, how the proposed merger-control analysis could be structured in R. The PhD proposal envisages linking a decisions panel with undertaking-level ownership data and examining whether merger review differs when one of the parties is State-owned. The relevant outcomes may include Phase II investigation, remedies and review duration.
+I wanted to understand how the data side of the project could work in practice and, at the same time, improve my R skills.
 
-## What I did
+The idea was to see how information from EU merger decisions could be linked with ownership information about the companies involved, and then used to look at outcomes such as Phase II review, remedies or review duration.
 
-I built a small dataset of 27 EU merger cases and separated the information into:
+## Data and workflow
+
+I put together a small set of 27 EUMR merger cases for the pilot and organised the information into three tables:
 
 - merger decisions;
-- parties to each transaction; and
-- undertaking-level ownership information.
+- the companies involved in each merger; and
+- ownership information for those companies.
 
-In R, I:
+In R, I linked the three tables, matched ownership information to the relevant year, created different measures of State ownership and State control, and then combined the information so that each merger appeared once in the final dataset.
 
-- imported and cleaned the three datasets;
-- linked merger parties to ownership observations;
-- created alternative indicators for State ownership and State control;
-- aggregated the data to one observation per merger;
-- coded Phase II investigation and remedies as binary outcomes.
+### Pilot data summary
 
-The exercise highlighted the importance of keeping State shareholding and State control separate, and of preserving missing ownership information rather than automatically treating an undertaking as privately owned.
+| Pilot sample | Number of cases |
+|---|---:|
+| Total merger cases | 27 |
+| Phase I decisions | 20 |
+| Phase II decisions | 7 |
+| Cases with remedies | 5 |
+| Confirmed cases involving State ownership | 5 |
+| Confirmed private cases | 0 |
+| Ownership classification unresolved / incomplete | 22 |
 
-## Why I did not regress the real sample
+The last two rows became an important part of the exercise. If ownership information was missing, I did not want to assume that the company was privately owned. I therefore kept those cases as unknown instead of creating a private group that I could not justify.
 
-The 27 cases were selected for methodological testing rather than through a representative sampling strategy.
+For the same reason, I kept State ownership and State control as separate variables. A State can own shares in a company without necessarily controlling it, so I did not want to treat the two as the same thing.
 
-Ownership information was also incomplete for several observations. The real pilot therefore cannot support substantive statistical inference about whether State-owned undertakings receive different treatment.
+## Regression demonstration
 
-Rather than recoding missing observations as private or interpreting results from a biased sample, I used the real data only to demonstrate dataset construction and coding.
+The real pilot is too small and has too much missing ownership information to draw reliable conclusions about whether State-owned companies are treated differently in merger review.
 
-## Simulated regression
+Instead of forcing the real data into a regression, I created a separate synthetic dataset of 200 hypothetical merger cases and used it only to practise the regression workflow in R.
 
-I then created a separate synthetic dataset of 200 hypothetical merger cases to practise the regression workflow.
+I first ran a simple logistic regression looking at the relationship between State ownership and Phase II review. I then added transaction size and sector to see how the result changed when other factors were taken into account.
 
-I estimated two illustrative logistic regression models:
+The results from the synthetic dataset are not findings about European Commission enforcement. This part of the pilot was only meant to help me understand how the proposed analysis could be implemented in practice.
 
-1. Phase II investigation predicted by State ownership.
-2. Phase II investigation predicted by State ownership while also accounting for transaction size and sector.
+## What I learned
 
-The simulated coefficients and p-values are not empirical findings. The simulation is included solely to demonstrate how the proposed analytical approach could be implemented in R.
+The most useful part of the pilot was not the regression itself.
 
-## Main methodological lessons
-
-The pilot showed that:
-
-- company and case identifiers need to be matched carefully;
-- ownership must be linked to the relevant point in time;
-- missing ownership information is not equivalent to private ownership;
-- State shareholding and legal control may produce different classifications;
-- the definition of a State-owned undertaking can therefore affect the empirical analysis;
-- sector and other transaction characteristics may need to be considered when analysing differences in merger scrutiny.
+It was seeing how much depends on the work done before the model is even run: identifying the right company, matching ownership information to the right year, deciding what counts as State ownership, keeping ownership and control separate, and dealing properly with missing information.
 
 ## Files
 
-- `01_import_clean.R` – imports and cleans the data
-- `02_match_construct.R` – links the datasets and constructs the merger-level variables
-- `03_demo_regression.R` – demonstrates the regression workflow using simulated data
+`01_import_clean.R` – imports and cleans the data
 
-## Limitation
+`02_match_construct.R` – links the datasets and creates the case-level variables
 
-This project is a methodological exercise, not an empirical study of European Commission enforcement practice.
+`03_demo_regression.R` – demonstrates the regression workflow using synthetic data
