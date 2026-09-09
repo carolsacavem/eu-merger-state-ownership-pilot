@@ -1,6 +1,6 @@
 # EU Merger Review and State Ownership: Methodological Pilot
 
-## Why I built this
+## Context
 
 I built this small pilot while reading through the proposed PhD project on competition law enforcement in mixed markets.
 
