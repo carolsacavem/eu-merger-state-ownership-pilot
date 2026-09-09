@@ -6,7 +6,7 @@ I built this small pilot while reading through the proposed PhD project on compe
 
 The idea was to identify which mergers involved State-owned companies, link that ownership information to the Commission’s merger decisions, and then examine whether those cases appeared to receive different levels of scrutiny, for example through Phase II review, remedies or longer review periods.
 
-This pilot was not intended to answer the PhD question itself, and the figures used are suggestive of anything about how the Commission actually treats State-owned companies.
+This pilot was not intended to answer the PhD question itself, and the figures used are not suggestive of anything about how the Commission actually treats State-owned companies.
 
 ## Data and workflow
 
